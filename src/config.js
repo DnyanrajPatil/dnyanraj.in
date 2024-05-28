@@ -1,7 +1,7 @@
 module.exports = {
-  email: 'D' + 'n' + 'y' + 'a' + 'n' + 'r' + 'a' + 'j' + '@' + 'D' + 'n' + 'y' + 'a' + 'n' + 'r' + 'a' + 'j.' + 'i' + 'n',
+  email:  'D' + 'n' + 'y' + 'a' + 'n' + 'r' + 'a' + 'j' + '.' + 'P' + 'a' + 't' + 'i' + 'l' + '@' + 'o' + 'u' + 't' + 'l' + 'o' + 'o' + 'k' + '.' + 'c' + 'o' + 'm',
 
-  emailRequestResume: 'D' + 'n' + 'y' + 'a' + 'n' + 'r' + 'a' + 'j' + '@' + 'D' + 'n' + 'y' + 'a' + 'n' + 'r' + 'a' + 'j.' + 'i' + 'n' + '?subject=Request for Dnyanraj resume',
+  emailRequestResume: 'D' + 'n' + 'y' + 'a' + 'n' + 'r' + 'a' + 'j' + '.' + 'P' + 'a' + 't' + 'i' + 'l' + '@' + 'o' + 'u' + 't' + 'l' + 'o' + 'o' + 'k' + '.' + 'c' + 'o' + 'm' + '?subject=Request for Dnyanraj resume',
 
   socialMedia: [
     {
