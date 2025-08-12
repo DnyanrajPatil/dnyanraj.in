@@ -4,7 +4,11 @@ module.exports = {
   emailRequestResume: 'dnyanraj.patil'+'@'+'outlook' + '.com' + '?subject=Request for Dnyanraj resume',
 
   socialMedia: [
-    {
+        {
+      name: 'Linkedin',
+      url: 'https://www.linkedin.com/in/dnyanrajpatil/',
+    },
+    /*{
       name: 'GitHub',
       url: 'https://github.com/DnyanrajPatil',
     },
@@ -16,14 +20,11 @@ module.exports = {
       name: 'Twitter',
       url: 'https://twitter.com/Dnyanrajpatil_',
     },
-    {
-      name: 'Linkedin',
-      url: 'https://www.linkedin.com/in/dnyanrajpatil/',
-    },
+
     {
       name: 'Codepen',
       url: 'https://codepen.io/dnyanrajpatil',
-    },
+    },*/
   ],
 
   navLinks: [
