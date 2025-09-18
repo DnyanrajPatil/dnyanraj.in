@@ -155,6 +155,9 @@ const About = () => {
                       , 'Job Management'
                       , 'Payroll'];
 
+// Dynamically calculate years of experience
+  const yearsOfExperience = new Date().getFullYear() - 2012;                      
+
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
       <h2 className="numbered-heading">About Me</h2>
@@ -170,7 +173,7 @@ const About = () => {
 My career in the ERP and related software industry has been marked by a dedication to 
 delivering exceptional service and providing tailored solutions to clients. 
 With a Master of Computer Applications (MCA) and Executive PG Programme in Software Development Full Stack from iiiT Bangalore, 
-I have acquired a strong educational foundation that has been augmented by over 11+ years of professional experience.
+I have acquired a strong educational foundation that has been augmented by over {yearsOfExperience}+ years of professional experience.
 
 
             </p>
