@@ -49,7 +49,7 @@ const Hero = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   // Dynamically calculate years of experience
-  const yearsOfExperience = new Date().getFullYear() - 2012;
+  const yearsOfExperience = new Date().getFullYear() - 2013;
 
   useEffect(() => {
     const timeout = setTimeout(() => setIsMounted(true), navDelay);
