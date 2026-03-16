@@ -1,10 +1,10 @@
 ---
-date: '2022-10-01'
+date: '2020-10-01'
 title: 'Epicor Technical Consultant'
 company: 'Epicor Freelance'
 location: 'Mumbai, India'
-range: 'October 2022 - Present'
-url: 'https://www.epicor.com/en-in/'
+range: 'October 2020 - Present'
+url: 'https://www.linkedin.com/in/dnyanrajpatil'
 ---
 
 - Specialized in Database Design, Development, Implementation, Database Scripting, and Customization of iScala ERP, Kinetic Epicor, and Epicor 9/10 ERP systems.
