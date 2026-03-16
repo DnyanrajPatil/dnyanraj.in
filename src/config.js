@@ -8,6 +8,10 @@ module.exports = {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/dnyanrajpatil/',
     },
+    {
+      name: 'GitHub',
+      url: 'https://www.epiusers.help/u/dnyanraj_patil/summary',
+    },    
     /*{
       name: 'GitHub',
       url: 'https://github.com/DnyanrajPatil',

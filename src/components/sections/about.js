@@ -156,7 +156,7 @@ const About = () => {
                       , 'Payroll'];
 
 // Dynamically calculate years of experience
-  const yearsOfExperience = new Date().getFullYear() - 2012;                      
+  const yearsOfExperience = new Date().getFullYear() - 2013;                      
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
