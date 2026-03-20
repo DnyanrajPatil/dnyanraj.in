@@ -164,7 +164,6 @@ projects:
   type: "Epicor"
   client: "Cape Gate" 
   Modules: ["Service Management", "Field Service", "Billing"]
-  Industry: "IT"
   Industry: "Manufacturing and Distribution"
 
 - project: Retail chain of luxury stores in Dubai
@@ -364,10 +363,10 @@ projects:
   title: ERP Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: ["Epicor",iScala]
-  description: 'Epicor'
+  PlatformSkills: ["C#,SQL,SSRS"]
+  description: 'One of the mide size financial Markets Product development company in India'
   showInProjects: true
-  type: "Epicor"
+  type: "Standalone"
   client: "ABC" 
   Modules: "ABC"
   Industry: "ABC"
@@ -377,10 +376,10 @@ projects:
   title: ERP Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: ["Epicor",iScala]
-  description: 'Epicor'
+  PlatformSkills: ["C#,SQL,SSRS"]
+  description: 'Fastest growing express logistics service provider india'
   showInProjects: true
-  type: "Epicor"
+  type: "Standalone"
   client: "ABC" 
   Modules: "ABC"
   Industry: "ABC"
