@@ -1,5 +1,18 @@
 ---
 projects:
+  - project: A global Europe-based industrial solutions provider specializing in flexible conveyor systems and automation.
+    months: 27
+    title: Technical Consultant
+    Role: Technical Consultant
+    TeamStrength: 4
+    description: "A global Europe-based industrial solutions provider specializing in flexible conveyor systems and automation."
+    showInProjects: true
+    type: "Epicor"
+    client: "Ambflex"
+    modules: ["Finance", "Procurement", "Production"]
+    industry: "Manufacturing"
+    PlatformSkills: ["BAQ", "BPM", "C#", "Kinetic Customization", "Service Connect", "REST API (v1 & v2)"]
+
   - project: One of the largest assemblers and distributors of personal computers and complementary ICT products in South Africa
     months: 9
     title: Technical Consultant
@@ -11,14 +24,14 @@ projects:
     client: "Mustek (South Africa)"
     modules: ["Finance", "Procurement", "Production"]
     industry: "Manufacturing"
-    PlatformSkills: ["Integration using Service Connect", "Customization using C#", "BAQ", "Dashboard"]
+    PlatformSkills: ["UBAQ", "Dashboards", "LINQ", "SSRS", "OData", "DMT"]
 
   - project: Internationally recognized as a supplier of premium-quality sheetfed and reel-fed labels for market leaders across various industry sectors in South Africa
     months: 3
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 6
-    PlatformSkills: ["Customization using C#", "BAQ", "Dashboard"]
+    PlatformSkills: ["BAQ Markup / Advanced Subqueries", "BPM", "C#", "Crystal Reports", "RDD"]
     description: "Internationally recognized as a supplier of premium-quality sheetfed and reel-fed labels for market leaders across various industry sectors in South Africa"
     showInProjects: true
     type: "Epicor"
@@ -31,7 +44,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 12
-    PlatformSkills: ["Developed Business Reports using SSRS and Integration using Service Connect"]
+    PlatformSkills: ["SSRS", "Service Connect", "SQL Scripting & Performance Tuning", "REST API (v1 & v2)", "Webhooks"]
     description: "One of the largest construction Company in Dubai"
     showInProjects: true
     type: "Epicor"
@@ -44,7 +57,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 20
-    PlatformSkills: ["System integration using Service Connect", "BPM", "Customizations using C#", "BAQ"]
+    PlatformSkills: ["Service Connect", "BPM", "C#", "BAQ", "EFx", "Automation Studio (Workato)"]
     description: "Largest tea plantation companies in Kenya"
     showInProjects: true
     type: "Epicor"
@@ -57,7 +70,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 3
-    PlatformSkills: ["Deployment of developments", "Customization", "Dashboards"]
+    PlatformSkills: ["Kinetic Customization", "Classic UI Customization", "Classic to Kinetic UI Conversion", "Dashboards", "BAQ"]
     description: "Digital solutions specialist for physical retail in France"
     showInProjects: true
     type: "Epicor"
@@ -70,7 +83,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 4
-    PlatformSkills: ["Epicor", "iScala"]
+    PlatformSkills: ["APR", "BPM", "EFx", "C#", "IIS & App Server Management", "Task Agent Administration"]
     description: "Epicor"
     showInProjects: true
     type: "Epicor"
@@ -83,7 +96,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 4
-    PlatformSkills: ["System Integration using Service Connect"]
+    PlatformSkills: ["Service Connect", "REST API (v1 & v2)", "OData", "AI Integration", "Python / External Scripting"]
     description: "Innovator and developer of next generation medical devices for use in interventional radiology, vascular surgery, and cardiology Texas United States"
     showInProjects: true
     type: "Epicor"
@@ -96,7 +109,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 8
-    PlatformSkills: ["Customization using VB.Net", "Financial system integration using Service Connect"]
+    PlatformSkills: ["VB.Net", "Service Connect", "SQL Scripting & Performance Tuning", "SSRS", "Azure AD / Entra ID"]
     description: "Organization oversees port operations in Tanzania"
     showInProjects: true
     type: "Epicor"
@@ -109,7 +122,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 4
-    PlatformSkills: ["Financial Module Integration Using Service Connect and SQL scripts"]
+    PlatformSkills: ["Service Connect", "SQL Scripting & Performance Tuning", "DMT", "OData", "Webhooks"]
     description: "Car distributors in Dubai"
     showInProjects: true
     type: "Epicor"
@@ -122,7 +135,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 6
-    PlatformSkills: ["Financial Integration using Service Connect"]
+    PlatformSkills: ["Service Connect", "REST API (v1 & v2)", "BPM", "BAQ", "Dashboards"]
     description: "Leading Enterprise Resource Planning (ERP) implementation software systems specialist in South Africa"
     showInProjects: true
     type: "Epicor"
@@ -135,7 +148,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 10
-    PlatformSkills: ["Financial Integration with Compello using Service Connect", ".Net Application", "Customization using C#"]
+    PlatformSkills: ["Service Connect", "C#", "LINQ", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     description: "Petroleum Company in Norway"
     showInProjects: true
     type: "Epicor"
@@ -148,13 +161,13 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 12
-    PlatformSkills: ["Customization using C#", "Dashboard", "BPM", "BAQ"]
+    PlatformSkills: ["C#", "BPM", "BAQ", "Dashboards", "UBAQ", "Crystal to SSRS Conversion", "RDD"]
     description: "Manufacturer and distribution of steel and wire Company in South Africa"
     showInProjects: true
     type: "Epicor"
     client: "Cape Gate"
     modules: ["Service Management", "Field Service", "Billing"]
-    industry: "Manufacturing and Distribution"
+    industry: "Manufacturing and Distribution"   
 
   - project: Retail chain of luxury stores in Dubai
     months: 10

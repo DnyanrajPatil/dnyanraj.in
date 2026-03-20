@@ -16,8 +16,8 @@ const COLUMN_CONFIG = [
   { key: 'project', label: 'Client', mobile: true },
   //{ key: 'client', label: 'Client', mobile: false },
   
-  { key: 'industry', label: 'Industry', mobile: false },
-  { key: 'modules', label: 'Modules', mobile: false },
+  //{ key: 'industry', label: 'Industry', mobile: false },
+  //{ key: 'modules', label: 'Modules', mobile: false },
   { key: 'platformSkills', label: 'Platform and Skills', mobile: false },
   { key: 'months', label: 'Months', width: '80px', mobile: true },
   //{ key: 'title', label: 'Title', mobile: true },
