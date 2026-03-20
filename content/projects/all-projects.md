@@ -6,7 +6,8 @@ projects:
   title: ERP Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  description: 'Epicor'
+  description: 'One of the largest assemblers and distributors of personal computers and
+    complementary ICT products in South Africa'
   showInProjects: true
   type: "Epicor"
   client: "ABC" 
