@@ -221,8 +221,10 @@ const ArchivePage = ({ location, data }) => {
                   return (
                     <tr key={i} ref={el => (revealProjects.current[i] = el)}>
                       <td className="sno">#{serialNumber}</td> {/* NEW CELL */}
-                      <td className="title">{type}</td>
                       <td className="title">{projectName}</td>
+                      <td>
+                        <span className="type">{type}</span> {/* NEW CELL */}
+                      </td>
                       <td className="title">{months}</td>
                       <td className="title">{title}</td>
                       <td className="title">{Role}</td>
