@@ -233,7 +233,9 @@ const Projects = () => {
               Role, 
               TeamStrength, 
               months, 
-              description 
+              description,
+              industry, 
+              modules
             } = project;
 
             // Auto-generated Serial Number (S.No) based on index

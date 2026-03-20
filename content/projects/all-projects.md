@@ -232,8 +232,8 @@ projects:
   showInProjects: true
   type: "Epicor"
   client: "ABC" 
-  Modules: "ABC"
-  Industry: "ABC"
+  Modules: ["Production", "Quality Assurance", "Maintenance"]
+  Industry: "Manufacturing"
 
 - project: One of the Leading providers of products for the eye care specialist in
     the UK
@@ -246,8 +246,8 @@ projects:
   showInProjects: true
   type: "Epicor"
   client: "ABC" 
-  Modules: "ABC"
-  Industry: "ABC"
+  Modules: ["Production", "Quality Assurance", "Maintenance"]
+  Industry: "Manufacturing"
 
 - project: One of the original members of The Steel Door Institute (SDI). In 2013,
     Steelcraft became part of the Allegion family of brands.
@@ -260,8 +260,8 @@ projects:
   showInProjects: true
   type: "Epicor"
   client: "ABC" 
-  Modules: "ABC"
-  Industry: "ABC"
+  Modules: ["Production", "Quality Assurance", "Maintenance"]
+  Industry: "Manufacturing"
 
 - project: Pioneer and the industry leader in Malaysian bottled water industry. Our
     group is involved in the manufacturing, distribution, marketing and selling of
@@ -275,8 +275,8 @@ projects:
   showInProjects: true
   type: "Epicor"
   client: "ABC" 
-  Modules: "ABC"
-  Industry: "ABC"
+  Modules: ["Production", "Quality Assurance", "Maintenance"]
+  Industry: "Manufacturing"
 
 - project: American international corporation whose principal business is selling
     gases and chemicals for industrial uses in Dubai
@@ -289,8 +289,8 @@ projects:
   showInProjects: true
   type: "Epicor"
   client: "ABC" 
-  Modules: "ABC"
-  Industry: "ABC"
+  Modules: ["Production", "Quality Assurance", "Maintenance"]
+  Industry: "Manufacturing"
 
 - project: Global company with sales of trucks, buses, engines & services in South
     Africa
@@ -303,8 +303,8 @@ projects:
   showInProjects: true
   type: "Epicor"
   client: "ABC" 
-  Modules: "ABC"
-  Industry: "ABC"
+  Modules: ["Production", "Quality Assurance", "Maintenance"]
+  Industry: "Manufacturing"
 
 - project: One of the Fortune 100 Pharmaceuticals company
   months: 6
@@ -368,8 +368,8 @@ projects:
   showInProjects: true
   type: "Standalone"
   client: "ABC" 
-  Modules: "ABC"
-  Industry: "ABC"
+  Modules: ["Production", "Quality Assurance", "Maintenance"]
+  Industry: "Manufacturing"
   
 - project: Fastest growing express logistics service provider india
   months: 6
@@ -381,6 +381,6 @@ projects:
   showInProjects: true
   type: "Standalone"
   client: "ABC" 
-  Modules: "ABC"
-  Industry: "ABC"
+  Modules: ["Production", "Quality Assurance", "Maintenance"]
+  Industry: "Manufacturing"
 ---
