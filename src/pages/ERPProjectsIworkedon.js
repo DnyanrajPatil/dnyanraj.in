@@ -8,19 +8,15 @@ import sr from '@utils/sr';
 import { Layout } from '@components';
 
 // ==========================================
-// COLUMN CONFIGURATION - MODIFY THIS SECTION
+// COLUMN CONFIGURATION - Easy to reorder
 // ==========================================
-// Reorder items to change column sequence
-// Remove items to hide columns
-// Available keys: sno, project, client, type, industry, modules, months, title, role, teamStrength, platformSkills
-
 const COLUMN_CONFIG = [
   { key: 'sno', label: 'S.No', width: '60px', mobile: true },
   { key: 'project', label: 'Project', mobile: true },
-  { key: 'client', label: 'Client', mobile: false }, // Hidden on mobile, exists in data
+  { key: 'client', label: 'Client', mobile: false },
   { key: 'type', label: 'Type', mobile: true },
-  { key: 'industry', label: 'Industry', mobile: false }, // NEW
-  { key: 'modules', label: 'Modules', mobile: false }, // NEW
+  { key: 'industry', label: 'Industry', mobile: false },
+  { key: 'modules', label: 'Modules', mobile: false },
   { key: 'months', label: 'Months', width: '80px', mobile: true },
   { key: 'title', label: 'Title', mobile: true },
   { key: 'role', label: 'Role', mobile: true },
@@ -71,11 +67,6 @@ const StyledTableContainer = styled.div`
           padding-right: 10px;
         }
       }
-
-      svg {
-        width: 20px;
-        height: 20px;
-      }
     }
 
     tr {
@@ -114,10 +105,9 @@ const StyledTableContainer = styled.div`
         font-size: var(--fz-sm);
         color: var(--green);
         font-weight: 600;
-        width: 60px;
       }
 
-      &.project-name {
+      &.project {
         color: var(--lightest-slate);
         font-size: var(--fz-lg);
         font-weight: 600;
@@ -141,11 +131,12 @@ const StyledTableContainer = styled.div`
         }
       }
 
-      &.industry, &.modules {
+      &.industry {
         font-size: var(--fz-sm);
         color: var(--light-slate);
-        max-width: 150px;
-        
+      }
+
+      &.modules {
         .modules-list {
           display: flex;
           flex-wrap: wrap;
@@ -176,7 +167,7 @@ const StyledTableContainer = styled.div`
         font-size: var(--fz-md);
       }
 
-      &.tech {
+      &.platformSkills {
         font-size: var(--fz-xxs);
         font-family: var(--font-mono);
         line-height: 1.5;
@@ -197,7 +188,6 @@ const StyledTableContainer = styled.div`
 `;
 
 const ArchivePage = ({ location, data }) => {
-  // Extract projects array from single markdown file - preserves exact order from .md file
   const projects = data.markdownRemark?.frontmatter?.projects?.filter(
     project => project.showInProjects !== false
   ) || [];
@@ -212,72 +202,61 @@ const ArchivePage = ({ location, data }) => {
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
   }, []);
 
-  // Helper function to render cell content based on column key
   const renderCellContent = (columnKey, project, index) => {
-    const {
-      project: projectName,
-      type,
-      client,
-      industry,      // NEW
-      modules,       // NEW
-      months,
-      title,
-      Role,
-      TeamStrength,
-      PlatformSkills,
-    } = project;
-
     switch (columnKey) {
       case 'sno':
-        return <span style={{ color: 'var(--green)', fontWeight: 600 }}>#{index + 1}</span>;
+        return <span>#{index + 1}</span>;
       
       case 'project':
-        return <span className="project-text">{projectName}</span>;
+        return <span>{project.project}</span>;
       
       case 'client':
-        return <span>{client}</span>;
+        return <span>{project.client || '-'}</span>;
       
       case 'type':
         return (
-          <span className="type-badge">{type}</span>
+          <span className="type-badge">
+            {project.type}
+          </span>
         );
       
-      case 'industry': // NEW
-        return <span>{industry}</span>;
+      case 'industry':
+        return <span>{project.industry || '-'}</span>;
       
-      case 'modules': // NEW
+      case 'modules':
+        if (!project.modules || project.modules.length === 0) return <span>-</span>;
         return (
           <div className="modules-list">
-            {modules?.map((mod, idx) => (
+            {project.modules.map((mod, idx) => (
               <span key={idx} className="module-tag">{mod}</span>
             ))}
           </div>
         );
       
       case 'months':
-        return <span>{months}</span>;
+        return <span>{project.months}</span>;
       
       case 'title':
-        return <span>{title}</span>;
+        return <span>{project.title}</span>;
       
       case 'role':
-        return <span>{Role}</span>;
+        return <span>{project.Role}</span>;
       
       case 'teamStrength':
-        return <span>{TeamStrength}</span>;
+        return <span>{project.TeamStrength}</span>;
       
       case 'platformSkills':
+        if (!project.PlatformSkills || project.PlatformSkills.length === 0) return <span>-</span>;
         return (
           <div>
-            {PlatformSkills?.length > 0 &&
-              PlatformSkills.map((item, idx) => (
-                <span key={idx}>
-                  {item}
-                  {idx !== PlatformSkills.length - 1 && (
-                    <span className="separator">&middot;</span>
-                  )}
-                </span>
-              ))}
+            {project.PlatformSkills.map((item, idx) => (
+              <span key={idx}>
+                {item}
+                {idx !== project.PlatformSkills.length - 1 && (
+                  <span className="separator">&middot;</span>
+                )}
+              </span>
+            ))}
           </div>
         );
       
@@ -348,13 +327,14 @@ export const pageQuery = graphql`
           project
           type        
           client
-          industry     # NEW
-          modules      # NEW
+          industry
+          modules
           months
           title
           Role
           TeamStrength
           PlatformSkills
+          description
           showInProjects
         }
       }

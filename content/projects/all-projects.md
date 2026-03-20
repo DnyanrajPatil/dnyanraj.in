@@ -22,7 +22,7 @@ projects:
   Role: Technical Consultant
   TeamStrength: 6
   PlatformSkills: ["Customization using C#", "BAQ", "Dashboard"]
-  description: ' Internationally recognized as a supplier of premium-quality sheetfed and
+  description: 'Internationally recognized as a supplier of premium-quality sheetfed and
     reel-fed labels for market leaders across various industry sectors in South Africa'
   showInProjects: true
   type: "Epicor"
@@ -75,7 +75,7 @@ projects:
   title: Technical Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: ["Epicor",iScala]
+  PlatformSkills: ["Epicor","iScala"]
   description: 'Epicor'
   showInProjects: true
   type: "Epicor"
@@ -91,7 +91,7 @@ projects:
   TeamStrength: 4
   PlatformSkills: ["System Integration using Service Connect"]
   description: '
-- project: Innovator and developer of next generation medical devices for use in interventional
+- project: 'Innovator and developer of next generation medical devices for use in interventional
     radiology, vascular surgery, and cardiology Texas United States'
   showInProjects: true
   type: "Epicor"
@@ -227,7 +227,7 @@ projects:
   title: Technical Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: ["Epicor",iScala]
+  PlatformSkills: ["Epicor","iScala"]
   description: 'One of the largest sign board building companies in the US'
   showInProjects: true
   type: "Epicor"
@@ -241,7 +241,7 @@ projects:
   title: ERP Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: ["Epicor",iScala]
+  PlatformSkills: ["Epicor","iScala"]
   description: 'Epicor'
   showInProjects: true
   type: "Epicor"
@@ -255,7 +255,7 @@ projects:
   title: ERP Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: ["Epicor",iScala]
+  PlatformSkills: ["Epicor","iScala"]
   description: 'Epicor'
   showInProjects: true
   type: "Epicor"
@@ -270,7 +270,7 @@ projects:
   title: ERP Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: ["Epicor",iScala]
+  PlatformSkills: ["Epicor","iScala"]
   description: 'Epicor'
   showInProjects: true
   type: "Epicor"
@@ -284,7 +284,7 @@ projects:
   title: ERP Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: ["Epicor",iScala]
+  PlatformSkills: ["Epicor","iScala"]
   description: 'Epicor'
   showInProjects: true
   type: "Epicor"
@@ -298,7 +298,7 @@ projects:
   title: ERP Consultant
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: ["Epicor",iScala]
+  PlatformSkills: ["Epicor","iScala"]
   description: 'Epicor'
   showInProjects: true
   type: "Epicor"
