@@ -226,7 +226,7 @@ projects:
     title: Technical Consultant
     Role: Technical Consultant
     TeamStrength: 4
-    PlatformSkills: ["Epicor", "iScala"]
+    PlatformSkills: ["Service Connect", "C#", "LINQ", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     description: "One of the largest sign board building companies in the US"
     showInProjects: true
     type: "Epicor"
@@ -239,7 +239,7 @@ projects:
     title: ERP Consultant
     Role: Technical Consultant
     TeamStrength: 4
-    PlatformSkills: ["Epicor", "iScala"]
+    PlatformSkills: ["Service Connect", "C#", "LINQ", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     description: "Epicor"
     showInProjects: true
     type: "Epicor"
@@ -252,7 +252,7 @@ projects:
     title: ERP Consultant
     Role: Technical Consultant
     TeamStrength: 4
-    PlatformSkills: ["Epicor", "iScala"]
+    PlatformSkills: ["Service Connect", "C#", "LINQ", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     description: "Epicor"
     showInProjects: true
     type: "Epicor"
@@ -265,7 +265,7 @@ projects:
     title: ERP Consultant
     Role: Technical Consultant
     TeamStrength: 4
-    PlatformSkills: ["Epicor", "iScala"]
+    PlatformSkills: ["Service Connect", "C#", "LINQ", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     description: "Epicor"
     showInProjects: true
     type: "Epicor"
@@ -278,7 +278,7 @@ projects:
     title: ERP Consultant
     Role: Technical Consultant
     TeamStrength: 4
-    PlatformSkills: ["Epicor", "iScala"]
+    PlatformSkills: ["Service Connect", "C#", "LINQ", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     description: "Epicor"
     showInProjects: true
     type: "Epicor"
@@ -291,7 +291,7 @@ projects:
     title: ERP Consultant
     Role: Technical Consultant
     TeamStrength: 4
-    PlatformSkills: ["Epicor", "iScala"]
+    PlatformSkills: ["Service Connect", "C#", "LINQ", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     description: "Epicor"
     showInProjects: true
     type: "Epicor"
