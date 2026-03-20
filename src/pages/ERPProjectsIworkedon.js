@@ -192,13 +192,12 @@ const ArchivePage = ({ location, data }) => {
             <thead>
               <tr>
                 <th style={{ width: '60px' }}>S.No</th> {/* NEW COLUMN */}
-                <th>Project</th>
                 <th>Type</th> {/* NEW COLUMN */}
-                <th>Months</th>
-                <th>Title</th> 
+                <th>Clients</th>
                 <th>Role</th>
+                <th className="hide-on-mobile">Platform and Skills</th>  
+                <th>Months</th>
                 <th>Team Strength</th>
-                <th className="hide-on-mobile">Platform and Skills</th>                
               </tr>
             </thead>
             <tbody>
@@ -226,7 +225,6 @@ const ArchivePage = ({ location, data }) => {
                         <span className="type">{type}</span> {/* NEW CELL */}
                       </td>
                       <td className="title">{months}</td>
-                      <td className="title">{title}</td>
                       <td className="title">{Role}</td>
                       <td className="title">{TeamStrength}</td>
                       <td className="tech hide-on-mobile">
