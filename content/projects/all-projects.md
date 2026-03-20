@@ -5,14 +5,13 @@ projects:
   months: 6 
   Role: Technical Consultant
   TeamStrength: 4
-  PlatformSkills: [Service Connect, Customization using C#, BAQ, Dashboard]
-  description: 'One of the largest assemblers and distributors of personal computers and
-    complementary ICT products in South Africa'
+  PlatformSkills: ["Service Connect, Customization using C#, BAQ, Dashboard"]
+  description: 'Epicor'
   showInProjects: true
   type: "Epicor"
-  client: "Mustek (South Africa)" 
-  Modules: ["Finance", "Procurement", "Production"]
-  Industry: "Manufacturing"
+  client: "ABC" 
+  Modules: "ABC"
+  Industry: "ABC"
 
 - project: Internationally recognized as a supplier of premium-quality sheetfed and
     reel-fed labels for market leaders across various industry sectors in South Africa
@@ -24,8 +23,6 @@ projects:
   showInProjects: true
   type: "Epicor"
   client: "ABC" 
-  Modules: ["Finance", "Procurement", "Production"]
-  Industry: "Manufacturing"
 
 - project: One of the largest construction Company in Dubai
   months: 6
