@@ -6,25 +6,26 @@ import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
 import { Layout } from '@components';
-import { Icon } from '@components/icons';
 
 // ==========================================
 // COLUMN CONFIGURATION - MODIFY THIS SECTION
 // ==========================================
 // Reorder items to change column sequence
 // Remove items to hide columns
-// Available keys: sno, project, type, client, months, title, role, teamStrength, platformSkills
+// Available keys: sno, project, client, type, industry, modules, months, title, role, teamStrength, platformSkills
 
 const COLUMN_CONFIG = [
   { key: 'sno', label: 'S.No', width: '60px', mobile: true },
+  { key: 'project', label: 'Project', mobile: true },
+  { key: 'client', label: 'Client', mobile: false }, // Hidden on mobile, exists in data
   { key: 'type', label: 'Type', mobile: true },
-  { key: 'project', label: 'Cleint', mobile: true },
+  { key: 'industry', label: 'Industry', mobile: false }, // NEW
+  { key: 'modules', label: 'Modules', mobile: false }, // NEW
+  { key: 'months', label: 'Months', width: '80px', mobile: true },
+  { key: 'title', label: 'Title', mobile: true },
   { key: 'role', label: 'Role', mobile: true },
-  { key: 'platformSkills', label: 'Platform and Skills', mobile: true }, // hide-on-mobile
-  { key: 'teamStrength', label: 'Team Strength', mobile: true },
-  { key: 'months', label: 'Months', mobile: true },
-  //{ key: 'title', label: 'Title', mobile: true },  
-  // { key: 'client', label: 'Client', mobile: false }, // Uncomment to show client column
+  { key: 'teamStrength', label: 'Team Strength', width: '120px', mobile: true },
+  { key: 'platformSkills', label: 'Platform and Skills', mobile: false },
 ];
 
 const StyledTableContainer = styled.div`
@@ -102,15 +103,30 @@ const StyledTableContainer = styled.div`
     }
 
     td {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      color: var(--light-slate);
+      font-size: var(--fz-md);
+      line-height: 1.5;
+
       &.sno {
         font-family: var(--font-mono);
         font-size: var(--fz-sm);
         color: var(--green);
         font-weight: 600;
+        width: 60px;
       }
 
-      &.type-badge {
-        span {
+      &.project-name {
+        color: var(--lightest-slate);
+        font-size: var(--fz-lg);
+        font-weight: 600;
+        line-height: 1.25;
+        padding-right: 20px;
+      }
+
+      &.type {
+        .type-badge {
           font-family: var(--font-mono);
           font-size: var(--fz-xxs);
           color: var(--light-slate);
@@ -121,37 +137,60 @@ const StyledTableContainer = styled.div`
           text-transform: uppercase;
           letter-spacing: 0.5px;
           display: inline-block;
+          white-space: nowrap;
         }
       }
 
-      &.tech {
-        font-size: var(--fz-xxs);
-        font-family: var(--font-mono);
-        line-height: 1.5;
+      &.industry, &.modules {
+        font-size: var(--fz-sm);
+        color: var(--light-slate);
+        max-width: 150px;
         
-        .separator {
-          margin: 0 5px;
-          color: var(--light-slate);
+        .modules-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px;
+          
+          .module-tag {
+            font-family: var(--font-mono);
+            font-size: var(--fz-xxs);
+            color: var(--light-slate);
+            background-color: rgba(100, 255, 218, 0.05);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            white-space: nowrap;
+          }
         }
-        
-        span {
-          display: inline-block;
-        }
-      }
-
-      &.title, &.project-name {
-        padding-top: 15px;
-        padding-right: 20px;
-        color: var(--lightest-slate);
-        font-size: var(--fz-lg);
-        font-weight: 600;
-        line-height: 1.25;
       }
 
       &.months, &.teamStrength {
         font-family: var(--font-mono);
         font-size: var(--fz-sm);
         color: var(--light-slate);
+        text-align: center;
+      }
+
+      &.title, &.role {
+        color: var(--lightest-slate);
+        font-size: var(--fz-md);
+      }
+
+      &.tech {
+        font-size: var(--fz-xxs);
+        font-family: var(--font-mono);
+        line-height: 1.5;
+        color: var(--light-slate);
+        
+        .separator {
+          margin: 0 5px;
+          color: var(--green);
+          opacity: 0.5;
+        }
+        
+        span {
+          display: inline-block;
+        }
       }
     }
   }
@@ -179,6 +218,8 @@ const ArchivePage = ({ location, data }) => {
       project: projectName,
       type,
       client,
+      industry,      // NEW
+      modules,       // NEW
       months,
       title,
       Role,
@@ -188,36 +229,46 @@ const ArchivePage = ({ location, data }) => {
 
     switch (columnKey) {
       case 'sno':
-        return <span className="sno">#{index + 1}</span>;
+        return <span style={{ color: 'var(--green)', fontWeight: 600 }}>#{index + 1}</span>;
       
       case 'project':
-        return <span className="project-name">{projectName}</span>;
-      
-      case 'type':
-        return (
-          <div className="type-badge">
-            <span>{type}</span>
-          </div>
-        );
+        return <span className="project-text">{projectName}</span>;
       
       case 'client':
         return <span>{client}</span>;
       
+      case 'type':
+        return (
+          <span className="type-badge">{type}</span>
+        );
+      
+      case 'industry': // NEW
+        return <span>{industry}</span>;
+      
+      case 'modules': // NEW
+        return (
+          <div className="modules-list">
+            {modules?.map((mod, idx) => (
+              <span key={idx} className="module-tag">{mod}</span>
+            ))}
+          </div>
+        );
+      
       case 'months':
-        return <span className="months">{months}</span>;
+        return <span>{months}</span>;
       
       case 'title':
-        return <span className="title">{title}</span>;
+        return <span>{title}</span>;
       
       case 'role':
         return <span>{Role}</span>;
       
       case 'teamStrength':
-        return <span className="teamStrength">{TeamStrength}</span>;
+        return <span>{TeamStrength}</span>;
       
       case 'platformSkills':
         return (
-          <div className="tech">
+          <div>
             {PlatformSkills?.length > 0 &&
               PlatformSkills.map((item, idx) => (
                 <span key={idx}>
@@ -235,22 +286,6 @@ const ArchivePage = ({ location, data }) => {
     }
   };
 
-  // Filter out columns that don't exist in any project data (optional validation)
-  const getValidColumns = () => {
-    return COLUMN_CONFIG.filter(col => {
-      // Always show S.No (it's auto-generated)
-      if (col.key === 'sno') return true;
-      
-      // Check if at least one project has this field
-      return projects.some(project => {
-        const value = project[col.key] || project[col.key.charAt(0).toUpperCase() + col.key.slice(1)];
-        return value !== undefined && value !== null;
-      });
-    });
-  };
-
-  const validColumns = getValidColumns();
-
   return (
     <Layout location={location}>
       <Helmet title="ERP Projects I worked on" />
@@ -265,7 +300,7 @@ const ArchivePage = ({ location, data }) => {
           <table>
             <thead>
               <tr>
-                {validColumns.map((col) => (
+                {COLUMN_CONFIG.map((col) => (
                   <th 
                     key={col.key}
                     style={{ width: col.width || 'auto' }}
@@ -280,10 +315,10 @@ const ArchivePage = ({ location, data }) => {
               {projects.length > 0 &&
                 projects.map((project, i) => (
                   <tr key={i} ref={el => (revealProjects.current[i] = el)}>
-                    {validColumns.map((col) => (
+                    {COLUMN_CONFIG.map((col) => (
                       <td 
                         key={col.key} 
-                        className={!col.mobile ? 'hide-on-mobile' : ''}
+                        className={`${col.key} ${!col.mobile ? 'hide-on-mobile' : ''}`}
                       >
                         {renderCellContent(col.key, project, i)}
                       </td>
@@ -312,7 +347,9 @@ export const pageQuery = graphql`
         projects {
           project
           type        
-          client      
+          client
+          industry     # NEW
+          modules      # NEW
           months
           title
           Role
