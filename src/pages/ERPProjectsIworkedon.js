@@ -71,7 +71,40 @@ const StyledTableContainer = styled.div`
       }
     }
 
+    th {
+      color: var(--lightest-slate);
+      font-family: var(--font-mono);
+      font-size: var(--fz-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--lightest-navy);
+    }
+
     td {
+      &.sno {
+        font-family: var(--font-mono);
+        font-size: var(--fz-sm);
+        color: var(--green);
+        font-weight: 600;
+        width: 60px;
+      }
+
+      &.type {
+        font-family: var(--font-mono);
+        font-size: var(--fz-xs);
+        color: var(--light-slate);
+        background-color: rgba(136, 146, 176, 0.1);
+        padding: 4px 8px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-top: 10px;
+        border: 1px solid var(--light-slate);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
       &.year {
         padding-right: 20px;
 
@@ -158,7 +191,9 @@ const ArchivePage = ({ location, data }) => {
           <table>
             <thead>
               <tr>
+                <th style={{ width: '60px' }}>S.No</th> {/* NEW COLUMN */}
                 <th>Project</th>
+                <th>Type</th> {/* NEW COLUMN */}
                 <th>Months</th>
                 <th>Title</th> 
                 <th>Role</th>
@@ -171,6 +206,8 @@ const ArchivePage = ({ location, data }) => {
                 projects.map((project, i) => {
                   const {
                     project: projectName,
+                    type,        // NEW: Type field
+                    client,      // Queried but not displayed (hidden as requested)
                     months,
                     title,
                     Role,
@@ -178,9 +215,16 @@ const ArchivePage = ({ location, data }) => {
                     PlatformSkills,
                   } = project;
 
+                  // Auto-generate Serial Number
+                  const serialNumber = i + 1;
+
                   return (
                     <tr key={i} ref={el => (revealProjects.current[i] = el)}>
+                      <td className="sno">#{serialNumber}</td> {/* NEW CELL */}
                       <td className="title">{projectName}</td>
+                      <td>
+                        <span className="type">{type}</span> {/* NEW CELL */}
+                      </td>
                       <td className="title">{months}</td>
                       <td className="title">{title}</td>
                       <td className="title">{Role}</td>
@@ -210,7 +254,6 @@ const ArchivePage = ({ location, data }) => {
 ArchivePage.propTypes = {
   location: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  
 };
 
 export default ArchivePage;
@@ -221,6 +264,8 @@ export const pageQuery = graphql`
       frontmatter {
         projects {
           project
+          type        # NEW: Added to query
+          client      # NEW: Added to query (exists in data but not displayed)
           months
           title
           Role
