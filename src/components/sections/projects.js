@@ -139,7 +139,7 @@ const StyledProject = styled.div`
     }
   }
 
-    .Otherlist {
+  .Otherlist {
     display: flex;
     align-items: flex-end;
     flex-grow: 1;
@@ -163,29 +163,27 @@ const StyledProject = styled.div`
 const Projects = () => {
   const data = useStaticQuery(graphql`
     query {
-      projects: allMarkdownRemark(
-        filter: {
-          fileAbsolutePath: { regex: "/projects/" }
-          frontmatter: { showInProjects: { ne: false } }
-        }
-        sort: { fields: [frontmatter___date], order: DESC }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              title
-              PlatformSkills
-              project
-              Role
-              TeamStrength
-              months
-            }
-            html
+      markdownRemark(fileAbsolutePath: { regex: "/all-projects.md/" }) {
+        frontmatter {
+          projects {
+            title
+            PlatformSkills
+            project
+            Role
+            TeamStrength
+            months
+            description
+            showInProjects
           }
         }
       }
     }
   `);
+
+  // Get projects array from single file - preserves exact order as written in .md file
+  const allProjects = data.markdownRemark?.frontmatter?.projects?.filter(
+    project => project.showInProjects !== false
+  ) || [];
 
   const [showMore, setShowMore] = useState(false);
   const revealTitle = useRef(null);
@@ -199,9 +197,8 @@ const Projects = () => {
   }, []);
 
   const GRID_LIMIT = 6;
-  const projects = data.projects.edges.filter(({ node }) => node);
-  const firstSix = projects.slice(0, GRID_LIMIT);
-  const projectsToShow = showMore ? projects : firstSix;
+  const firstSix = allProjects.slice(0, GRID_LIMIT);
+  const projectsToShow = showMore ? allProjects : firstSix;
 
   return (
     <StyledProjectsSection>
@@ -213,9 +210,16 @@ const Projects = () => {
 
       <TransitionGroup className="projects-grid">
         {projectsToShow &&
-          projectsToShow.map(({ node }, i) => {
-            const { frontmatter, html } = node;
-            const { project, title, PlatformSkills,Role,TeamStrength,months } = frontmatter;
+          projectsToShow.map((project, i) => {
+            const { 
+              project: projectName, 
+              title, 
+              PlatformSkills, 
+              Role, 
+              TeamStrength, 
+              months, 
+              description 
+            } = project;
 
             return (
               <CSSTransition
@@ -237,29 +241,29 @@ const Projects = () => {
                           <Icon name="Folder" />
                         </div>
                         <div className="folder">
-                          {project}
+                          {projectName}
                         </div>
-
                       </div>
 
                       <h3 className="project-title">{title}</h3>
 
                       <div
                         className="project-description"
-                        dangerouslySetInnerHTML={{ __html: html }}
+                        dangerouslySetInnerHTML={{ __html: description }}
                       />
                     </header>
                     
                     <footer>
-                       <div className="Otherlist">
-                          <li>Role: {Role}</li>
-                          <li>Team Strength: {TeamStrength}</li>
-                          <li>Duration : {months} months</li>
+                      <div className="Otherlist">
+                        <li>Role: {Role}</li>
+                        <li>Team Strength: {TeamStrength}</li>
+                        <li>Duration: {months} months</li>
                       </div>
                       {PlatformSkills && (
                         <ul className="project-PlatformSkills-list">
-                          <li>Platform and Skills: </li>{PlatformSkills.map((PlatformSkills, i) => (
-                            <li key={i}>-{PlatformSkills}</li>
+                          <li>Platform and Skills: </li>
+                          {PlatformSkills.map((skill, idx) => (
+                            <li key={idx}>-{skill}</li>
                           ))}
                         </ul>
                       )}

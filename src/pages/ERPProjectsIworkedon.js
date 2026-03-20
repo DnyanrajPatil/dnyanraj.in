@@ -129,7 +129,11 @@ const StyledTableContainer = styled.div`
 `;
 
 const ArchivePage = ({ location, data }) => {
-  const projects = data.allMarkdownRemark.edges;
+  // Extract projects array from single markdown file - preserves exact order from .md file
+  const projects = data.markdownRemark?.frontmatter?.projects?.filter(
+    project => project.showInProjects !== false
+  ) || [];
+
   const revealTitle = useRef(null);
   const revealTable = useRef(null);
   const revealProjects = useRef([]);
@@ -147,7 +151,7 @@ const ArchivePage = ({ location, data }) => {
       <main>
         <header ref={revealTitle}>
           <h1 className="big-heading">ERP Projects I worked on</h1>
-          <p className="subtitle">A big list of things I’ve worked on(Due to confidentiality concerns, names of clients cannot be disclosed.)</p>
+          <p className="subtitle">A big list of things I've worked on (Due to confidentiality concerns, names of clients cannot be disclosed.)</p>
         </header>
 
         <StyledTableContainer ref={revealTable}>
@@ -164,38 +168,37 @@ const ArchivePage = ({ location, data }) => {
             </thead>
             <tbody>
               {projects.length > 0 &&
-                projects.map(({ node }, i) => {
+                projects.map((project, i) => {
                   const {
-                    project,
+                    project: projectName,
                     months,
                     title,
                     Role,
                     TeamStrength,
                     PlatformSkills,
-                  } = node.frontmatter;
+                  } = project;
+
                   return (
                     <tr key={i} ref={el => (revealProjects.current[i] = el)}>
-                      <td className="title">{project}</td>
+                      <td className="title">{projectName}</td>
                       <td className="title">{months}</td>
                       <td className="title">{title}</td>
                       <td className="title">{Role}</td>
                       <td className="title">{TeamStrength}</td>
                       <td className="tech hide-on-mobile">
-                        {PlatformSkills.length > 0 &&
-                          PlatformSkills.map((item, i) => (
-                            <span key={i}>
+                        {PlatformSkills?.length > 0 &&
+                          PlatformSkills.map((item, idx) => (
+                            <span key={idx}>
                               {item}
-                              {''}
-                              {i !== PlatformSkills.length - 1 && <span className="separator">&middot;</span>}
+                              {idx !== PlatformSkills.length - 1 && (
+                                <span className="separator">&middot;</span>
+                              )}
                             </span>
-
                           ))}
                       </td>
-
-
                     </tr>
                   );
-                }).sort((a, b) => (a[1] > b[1] ? 1 : -1))}
+                })}
             </tbody>
           </table>
         </StyledTableContainer>
@@ -203,6 +206,7 @@ const ArchivePage = ({ location, data }) => {
     </Layout>
   );
 };
+
 ArchivePage.propTypes = {
   location: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
@@ -211,24 +215,17 @@ ArchivePage.propTypes = {
 export default ArchivePage;
 
 export const pageQuery = graphql`
-  {
-    allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/projects/" } 
-    frontmatter: { showInProjects: { ne: false } }
-  }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            project
-            months
-            title
-            Role
-            TeamStrength
-            PlatformSkills
-          }
-          html
+  query {
+    markdownRemark(fileAbsolutePath: { regex: "/all-projects.md/" }) {
+      frontmatter {
+        projects {
+          project
+          months
+          title
+          Role
+          TeamStrength
+          PlatformSkills
+          showInProjects
         }
       }
     }
