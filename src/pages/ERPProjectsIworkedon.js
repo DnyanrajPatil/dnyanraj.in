@@ -12,16 +12,18 @@ import { Layout } from '@components';
 // ==========================================
 const COLUMN_CONFIG = [
   { key: 'sno', label: 'S.No', width: '60px', mobile: true },
-  { key: 'project', label: 'Project', mobile: true },
-  { key: 'client', label: 'Client', mobile: false },
   { key: 'type', label: 'Type', mobile: true },
+  { key: 'project', label: 'Client', mobile: true },
+  //{ key: 'client', label: 'Client', mobile: false },
+  
   { key: 'industry', label: 'Industry', mobile: false },
   { key: 'modules', label: 'Modules', mobile: false },
+  { key: 'platformSkills', label: 'Platform and Skills', mobile: false },
   { key: 'months', label: 'Months', width: '80px', mobile: true },
-  { key: 'title', label: 'Title', mobile: true },
+  //{ key: 'title', label: 'Title', mobile: true },
   { key: 'role', label: 'Role', mobile: true },
   { key: 'teamStrength', label: 'Team Strength', width: '120px', mobile: true },
-  { key: 'platformSkills', label: 'Platform and Skills', mobile: false },
+  
 ];
 
 const StyledTableContainer = styled.div`
