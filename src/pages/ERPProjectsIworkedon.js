@@ -8,6 +8,25 @@ import sr from '@utils/sr';
 import { Layout } from '@components';
 import { Icon } from '@components/icons';
 
+// ==========================================
+// COLUMN CONFIGURATION - MODIFY THIS SECTION
+// ==========================================
+// Reorder items to change column sequence
+// Remove items to hide columns
+// Available keys: sno, project, type, client, months, title, role, teamStrength, platformSkills
+
+const COLUMN_CONFIG = [
+  { key: 'sno', label: 'S.No', width: '60px', mobile: true },
+  { key: 'type', label: 'Type', mobile: true },
+  { key: 'project', label: 'Cleint', mobile: true },
+  { key: 'role', label: 'Role', mobile: true },
+  { key: 'platformSkills', label: 'Platform and Skills', mobile: true }, // hide-on-mobile
+  { key: 'teamStrength', label: 'Team Strength', mobile: true },
+  { key: 'months', label: 'Months', mobile: true },
+  //{ key: 'title', label: 'Title', mobile: true },  
+  // { key: 'client', label: 'Client', mobile: false }, // Uncomment to show client column
+];
+
 const StyledTableContainer = styled.div`
   margin: 100px -20px;
 
@@ -88,74 +107,51 @@ const StyledTableContainer = styled.div`
         font-size: var(--fz-sm);
         color: var(--green);
         font-weight: 600;
-        width: 60px;
       }
 
-      &.type {
-        font-family: var(--font-mono);
-        font-size: var(--fz-xs);
-        color: var(--light-slate);
-        background-color: rgba(136, 146, 176, 0.1);
-        padding: 4px 8px;
-        border-radius: 4px;
-        display: inline-block;
-        margin-top: 10px;
-        border: 1px solid var(--light-slate);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      &.year {
-        padding-right: 20px;
-
-        @media (max-width: 768px) {
-          padding-right: 10px;
-          font-size: var(--fz-sm);
+      &.type-badge {
+        span {
+          font-family: var(--font-mono);
+          font-size: var(--fz-xxs);
+          color: var(--light-slate);
+          background-color: rgba(136, 146, 176, 0.1);
+          padding: 4px 8px;
+          border-radius: 4px;
+          border: 1px solid var(--light-slate);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          display: inline-block;
         }
-      }
-
-      &.title {
-        padding-top: 15px;
-        padding-right: 20px;
-        color: var(--lightest-slate);
-        font-size: var(--fz-xl);
-        font-weight: 600;
-        line-height: 1.25;
-      }
-
-      &.company {
-        font-size: var(--fz-lg);
-        white-space: nowrap;
       }
 
       &.tech {
         font-size: var(--fz-xxs);
         font-family: var(--font-mono);
         line-height: 1.5;
+        
         .separator {
           margin: 0 5px;
+          color: var(--light-slate);
         }
+        
         span {
           display: inline-block;
         }
       }
 
-      &.links {
-        min-width: 100px;
+      &.title, &.project-name {
+        padding-top: 15px;
+        padding-right: 20px;
+        color: var(--lightest-slate);
+        font-size: var(--fz-lg);
+        font-weight: 600;
+        line-height: 1.25;
+      }
 
-        div {
-          display: flex;
-          align-items: center;
-
-          a {
-            ${({ theme }) => theme.mixins.flexCenter};
-            flex-shrink: 0;
-          }
-
-          a + a {
-            margin-left: 10px;
-          }
-        }
+      &.months, &.teamStrength {
+        font-family: var(--font-mono);
+        font-size: var(--fz-sm);
+        color: var(--light-slate);
       }
     }
   }
@@ -177,6 +173,84 @@ const ArchivePage = ({ location, data }) => {
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
   }, []);
 
+  // Helper function to render cell content based on column key
+  const renderCellContent = (columnKey, project, index) => {
+    const {
+      project: projectName,
+      type,
+      client,
+      months,
+      title,
+      Role,
+      TeamStrength,
+      PlatformSkills,
+    } = project;
+
+    switch (columnKey) {
+      case 'sno':
+        return <span className="sno">#{index + 1}</span>;
+      
+      case 'project':
+        return <span className="project-name">{projectName}</span>;
+      
+      case 'type':
+        return (
+          <div className="type-badge">
+            <span>{type}</span>
+          </div>
+        );
+      
+      case 'client':
+        return <span>{client}</span>;
+      
+      case 'months':
+        return <span className="months">{months}</span>;
+      
+      case 'title':
+        return <span className="title">{title}</span>;
+      
+      case 'role':
+        return <span>{Role}</span>;
+      
+      case 'teamStrength':
+        return <span className="teamStrength">{TeamStrength}</span>;
+      
+      case 'platformSkills':
+        return (
+          <div className="tech">
+            {PlatformSkills?.length > 0 &&
+              PlatformSkills.map((item, idx) => (
+                <span key={idx}>
+                  {item}
+                  {idx !== PlatformSkills.length - 1 && (
+                    <span className="separator">&middot;</span>
+                  )}
+                </span>
+              ))}
+          </div>
+        );
+      
+      default:
+        return null;
+    }
+  };
+
+  // Filter out columns that don't exist in any project data (optional validation)
+  const getValidColumns = () => {
+    return COLUMN_CONFIG.filter(col => {
+      // Always show S.No (it's auto-generated)
+      if (col.key === 'sno') return true;
+      
+      // Check if at least one project has this field
+      return projects.some(project => {
+        const value = project[col.key] || project[col.key.charAt(0).toUpperCase() + col.key.slice(1)];
+        return value !== undefined && value !== null;
+      });
+    });
+  };
+
+  const validColumns = getValidColumns();
+
   return (
     <Layout location={location}>
       <Helmet title="ERP Projects I worked on" />
@@ -191,58 +265,31 @@ const ArchivePage = ({ location, data }) => {
           <table>
             <thead>
               <tr>
-                <th style={{ width: '60px' }}>S.No</th> {/* NEW COLUMN */}
-                <th>Type</th> {/* NEW COLUMN */}
-                <th>Clients</th>
-                <th>Role</th>
-                <th className="hide-on-mobile">Platform and Skills</th>  
-                <th>Months</th>
-                <th>Team Strength</th>
+                {validColumns.map((col) => (
+                  <th 
+                    key={col.key}
+                    style={{ width: col.width || 'auto' }}
+                    className={!col.mobile ? 'hide-on-mobile' : ''}
+                  >
+                    {col.label}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {projects.length > 0 &&
-                projects.map((project, i) => {
-                  const {
-                    project: type,
-                    projectName,        // NEW: Type field
-                    Role,
-                    PlatformSkills,
-                    months,
-                    TeamStrength,
-                    client,      // Queried but not displayed (hidden as requested)
-                    title,
-                    
-                    
-                  } = project;
-
-                  // Auto-generate Serial Number
-                  const serialNumber = i + 1;
-
-                  return (
-                    <tr key={i} ref={el => (revealProjects.current[i] = el)}>
-                      <td className="sno">#{serialNumber}</td> {/* NEW CELL */}
-                      <td className="title">{projectName}</td>
-                      <td>
-                        <span className="type">{type}</span> {/* NEW CELL */}
+                projects.map((project, i) => (
+                  <tr key={i} ref={el => (revealProjects.current[i] = el)}>
+                    {validColumns.map((col) => (
+                      <td 
+                        key={col.key} 
+                        className={!col.mobile ? 'hide-on-mobile' : ''}
+                      >
+                        {renderCellContent(col.key, project, i)}
                       </td>
-                      <td className="title">{months}</td>
-                      <td className="title">{Role}</td>
-                      <td className="title">{TeamStrength}</td>
-                      <td className="tech hide-on-mobile">
-                        {PlatformSkills?.length > 0 &&
-                          PlatformSkills.map((item, idx) => (
-                            <span key={idx}>
-                              {item}
-                              {idx !== PlatformSkills.length - 1 && (
-                                <span className="separator">&middot;</span>
-                              )}
-                            </span>
-                          ))}
-                      </td>
-                    </tr>
-                  );
-                })}
+                    ))}
+                  </tr>
+                ))}
             </tbody>
           </table>
         </StyledTableContainer>
@@ -264,8 +311,8 @@ export const pageQuery = graphql`
       frontmatter {
         projects {
           project
-          type        # NEW: Added to query
-          client      # NEW: Added to query (exists in data but not displayed)
+          type        
+          client      
           months
           title
           Role
