@@ -64,43 +64,54 @@ const StyledProject = styled.div`
     border-radius: var(--border-radius);
     background-color: var(--light-navy);
     transition: var(--transition);
+    overflow: hidden;
   }
 
   .project-top {
     ${({ theme }) => theme.mixins.flexBetween};
+    width: 100%;
     margin-bottom: 35px;
+    position: relative;
+
+    .sno {
+      font-family: var(--font-mono);
+      font-size: var(--fz-xs);
+      color: var(--green);
+      font-weight: 600;
+      background: rgba(100, 255, 218, 0.1);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--green);
+    }
 
     .folder {
       color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      
       svg {
         width: 40px;
         height: 40px;
       }
+
+      .project-name-text {
+        font-size: var(--fz-md);
+        font-weight: 600;
+        color: var(--lightest-slate);
+      }
     }
 
-    .project-links {
-      display: flex;
-      align-items: center;
-      margin-right: -10px;
+    .project-type {
+      font-family: var(--font-mono);
+      font-size: var(--fz-xxs);
       color: var(--light-slate);
-
-      a {
-        ${({ theme }) => theme.mixins.flexCenter};
-        padding: 5px 7px;
-
-        &.external {
-          svg {
-            width: 22px;
-            height: 22px;
-            margin-top: -4px;
-          }
-        }
-
-        svg {
-          width: 20px;
-          height: 20px;
-        }
-      }
+      background-color: rgba(136, 146, 176, 0.15);
+      padding: 4px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--light-slate);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
   }
 
@@ -169,6 +180,8 @@ const Projects = () => {
             title
             PlatformSkills
             project
+            type        # NEW: Project type (Epicor, iScala, etc.)
+            client      # NEW: Client name (hidden from display but queried)
             Role
             TeamStrength
             months
@@ -213,6 +226,8 @@ const Projects = () => {
           projectsToShow.map((project, i) => {
             const { 
               project: projectName, 
+              type,           // NEW: Type of project
+              client,         // NEW: Available in data but not displayed (hidden as requested)
               title, 
               PlatformSkills, 
               Role, 
@@ -220,6 +235,9 @@ const Projects = () => {
               months, 
               description 
             } = project;
+
+            // Auto-generated Serial Number (S.No) based on index
+            const serialNumber = i + 1;
 
             return (
               <CSSTransition
@@ -237,12 +255,12 @@ const Projects = () => {
                   <div className="project-inner">
                     <header>
                       <div className="project-top">
+                        <div className="sno">#{serialNumber}</div>
                         <div className="folder">
                           <Icon name="Folder" />
+                          <span className="project-name-text">{projectName}</span>
                         </div>
-                        <div className="folder">
-                          {projectName}
-                        </div>
+                        <div className="project-type">{type}</div>
                       </div>
 
                       <h3 className="project-title">{title}</h3>
@@ -279,7 +297,6 @@ const Projects = () => {
         Show {showMore ? 'Less' : 'More'}
       </button>
     </StyledProjectsSection>
-    
   );
 };
 
