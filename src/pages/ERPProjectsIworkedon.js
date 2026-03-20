@@ -204,14 +204,16 @@ const ArchivePage = ({ location, data }) => {
               {projects.length > 0 &&
                 projects.map((project, i) => {
                   const {
-                    project: projectName,
-                    type,        // NEW: Type field
-                    client,      // Queried but not displayed (hidden as requested)
-                    months,
-                    title,
+                    project: type,
+                    projectName,        // NEW: Type field
                     Role,
-                    TeamStrength,
                     PlatformSkills,
+                    months,
+                    TeamStrength,
+                    client,      // Queried but not displayed (hidden as requested)
+                    title,
+                    
+                    
                   } = project;
 
                   // Auto-generate Serial Number
