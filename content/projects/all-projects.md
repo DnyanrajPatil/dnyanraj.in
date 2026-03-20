@@ -12,11 +12,11 @@ projects:
   client: "ABC" 
   Modules: "ABC"
   Industry: "ABC"
-  PlatformSkills: ["  
+  PlatformSkills:
   - Integration using Service Connect
   - Customization using C#
   - BAQ
-  - Dashboard"]
+  - Dashboard
 
 - project: Internationally recognized as a supplier of premium-quality sheetfed and
     reel-fed labels for market leaders across various industry sectors in South Africa
