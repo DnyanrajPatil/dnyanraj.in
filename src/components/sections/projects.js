@@ -279,6 +279,7 @@ const Projects = () => {
         Show {showMore ? 'Less' : 'More'}
       </button>
     </StyledProjectsSection>
+    
   );
 };
 

@@ -210,6 +210,7 @@ const ArchivePage = ({ location, data }) => {
 ArchivePage.propTypes = {
   location: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
+  
 };
 
 export default ArchivePage;
