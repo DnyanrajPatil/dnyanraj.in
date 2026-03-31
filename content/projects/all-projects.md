@@ -9,7 +9,7 @@ projects:
     months: 60
     TeamStrength: 6
     modules: ["Finance", "Procurement", "Production"]
-    PlatformSkills: ["BAQ", "BPM", "C#", "Kinetic Customization", "Service Connect", "REST API (v1 & v2)"]
+    PlatformSkills: ["BAQ", "BPM", "C#", "Kinetic Customization", "Service Connect", "REST API"]
     title: ""
     description: ""
     showInProjects: true
@@ -22,7 +22,7 @@ projects:
     months: 36
     TeamStrength: 4
     modules: ["Finance", "Procurement", "Production"]
-    PlatformSkills: ["Kinetic UI customizations", "BAQs", "dashboards", "SSRS & Crystal Reports", "BPM", "C#", "Customization", "Service Connect", "REST API (v1 & v2)"]
+    PlatformSkills: ["Kinetic UI customizations", "BAQs", "dashboards", "SSRS & Crystal Reports", "BPM", "C#", "Customization", "Service Connect", "REST API"]
     title: ""
     description: ""
     showInProjects: false
@@ -61,7 +61,7 @@ projects:
     months: 3
     TeamStrength: 12
     modules: ["Procurement", "Inventory", "Warehouse Management"]
-    PlatformSkills: ["SSRS", "Service Connect", "SQL Scripting & Performance Tuning", "REST API (v1 & v2)", "Webhooks"]
+    PlatformSkills: ["SSRS", "Service Connect", "SQL Scripting & Performance Tuning", "REST API", "Webhooks"]
     title: ""
     description: ""
     showInProjects: true
@@ -113,7 +113,7 @@ projects:
     months: 3
     TeamStrength: 4
     modules: ["Supply Chain Management", "Procurement", "Logistics"]
-    PlatformSkills: ["Service Connect", "REST API (v1 & v2)", "OData", "AI Integration", "Python / External Scripting"]
+    PlatformSkills: ["Service Connect", "REST API", "OData", "AI Integration", "Python / External Scripting"]
     title: ""
     description: ""
     showInProjects: true
@@ -152,7 +152,7 @@ projects:
     months: 3
     TeamStrength: 6
     modules: ["Service Management", "Field Service", "Billing"]
-    PlatformSkills: ["Service Connect", "REST API (v1 & v2)", "BPM", "BAQ", "Dashboards"]
+    PlatformSkills: ["Service Connect", "REST API", "BPM", "BAQ", "Dashboards"]
     title: ""
     description: ""
     showInProjects: true

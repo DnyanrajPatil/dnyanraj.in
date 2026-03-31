@@ -16,10 +16,10 @@ const COLUMN_CONFIG = [
   { key: 'client', label: 'Client', mobile: true }, // Visible but blurred
   { key: 'project', label: 'Client Profile', mobile: true },
   { key: 'industry', label: 'Industry', mobile: false },
-  { key: 'modules', label: 'Modules', mobile: false },
+  //{ key: 'modules', label: 'Modules', mobile: false },
   //{ key: 'months', label: 'Months', width: '80px', mobile: true },
   //{ key: 'title', label: 'Title', mobile: true },
-  { key: 'role', label: 'Role', mobile: true },
+//  { key: 'role', label: 'Role', mobile: true },
   //{ key: 'teamStrength', label: 'Team Strength', width: '120px', mobile: true },
   { key: 'platformSkills', label: 'Platform and Skills', mobile: false },
 ];
