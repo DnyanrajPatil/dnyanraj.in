@@ -8,26 +8,34 @@ import sr from '@utils/sr';
 import { Layout } from '@components';
 
 // ==========================================
-// COLUMN CONFIGURATION - Easy to reorder
+// COLUMN CONFIGURATION - Client column added
 // ==========================================
 const COLUMN_CONFIG = [
   { key: 'sno', label: 'S.No', width: '60px', mobile: true },
   { key: 'type', label: 'Type', mobile: true },
-  { key: 'project', label: 'Client', mobile: true },
-  { key: 'client', label: 'Client', mobile: false },
-  
-  //{ key: 'industry', label: 'Industry', mobile: false },
+  { key: 'client', label: 'Client', mobile: true }, // Now visible with blue styling
+  // { key: 'project', label: 'Project', mobile: true },
+  { key: 'industry', label: 'Industry', mobile: false },
   //{ key: 'modules', label: 'Modules', mobile: false },
-  { key: 'platformSkills', label: 'Platform and Skills', mobile: false },
   //{ key: 'months', label: 'Months', width: '80px', mobile: true },
   //{ key: 'title', label: 'Title', mobile: true },
-  //{ key: 'role', label: 'Role', mobile: true },
+  { key: 'role', label: 'Role', mobile: true },
   //{ key: 'teamStrength', label: 'Team Strength', width: '120px', mobile: true },
-  
+  { key: 'platformSkills', label: 'Platform and Skills', mobile: false },
 ];
 
 const StyledTableContainer = styled.div`
   margin: 100px -20px;
+  
+  /* Copy protection styles */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  
+  /* Prevent text selection cursor */
+  cursor: default;
 
   @media (max-width: 768px) {
     margin: 50px -10px;
@@ -117,6 +125,30 @@ const StyledTableContainer = styled.div`
         padding-right: 20px;
       }
 
+      /* Blue styling for Client column */
+      &.client {
+        .client-name {
+          color: #64b5f6; /* Light blue color */
+          font-weight: 600;
+          background: linear-gradient(135deg, rgba(100, 181, 246, 0.1) 0%, rgba(66, 133, 244, 0.05) 100%);
+          padding: 6px 12px;
+          border-radius: 6px;
+          border: 1px solid rgba(100, 181, 246, 0.3);
+          display: inline-block;
+          font-family: var(--font-mono);
+          font-size: var(--fz-sm);
+          box-shadow: 0 2px 8px rgba(100, 181, 246, 0.1);
+          transition: all 0.3s ease;
+          
+          &:hover {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.2) 0%, rgba(66, 133, 244, 0.1) 100%);
+            border-color: rgba(100, 181, 246, 0.5);
+            box-shadow: 0 4px 12px rgba(100, 181, 246, 0.2);
+            transform: translateY(-1px);
+          }
+        }
+      }
+
       &.type {
         .type-badge {
           font-family: var(--font-mono);
@@ -197,11 +229,68 @@ const ArchivePage = ({ location, data }) => {
   const revealTitle = useRef(null);
   const revealTable = useRef(null);
   const revealProjects = useRef([]);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
     sr.reveal(revealTable.current, srConfig(200, 0));
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
+
+    // Copy protection event listeners
+    const container = containerRef.current;
+    
+    if (container) {
+      // Disable right-click context menu
+      const handleContextMenu = (e) => {
+        e.preventDefault();
+        return false;
+      };
+      
+      // Disable copy
+      const handleCopy = (e) => {
+        e.preventDefault();
+        return false;
+      };
+      
+      // Disable cut
+      const handleCut = (e) => {
+        e.preventDefault();
+        return false;
+      };
+      
+      // Disable drag
+      const handleDragStart = (e) => {
+        e.preventDefault();
+        return false;
+      };
+      
+      // Disable certain keyboard shortcuts (Ctrl+C, Ctrl+X, Ctrl+S, Ctrl+P, Ctrl+A)
+      const handleKeyDown = (e) => {
+        if (e.ctrlKey || e.metaKey) {
+          const blockedKeys = ['c', 'x', 's', 'p', 'a'];
+          if (blockedKeys.includes(e.key.toLowerCase())) {
+            e.preventDefault();
+            return false;
+          }
+        }
+      };
+
+      // Add event listeners
+      container.addEventListener('contextmenu', handleContextMenu);
+      container.addEventListener('copy', handleCopy);
+      container.addEventListener('cut', handleCut);
+      container.addEventListener('dragstart', handleDragStart);
+      document.addEventListener('keydown', handleKeyDown);
+
+      // Cleanup
+      return () => {
+        container.removeEventListener('contextmenu', handleContextMenu);
+        container.removeEventListener('copy', handleCopy);
+        container.removeEventListener('cut', handleCut);
+        container.removeEventListener('dragstart', handleDragStart);
+        document.removeEventListener('keydown', handleKeyDown);
+      };
+    }
   }, []);
 
   const renderCellContent = (columnKey, project, index) => {
@@ -213,12 +302,16 @@ const ArchivePage = ({ location, data }) => {
         return <span>{project.project}</span>;
       
       case 'client':
-        return <span>{project.client || '-'}</span>;
+        return (
+          <span className="client-name" title="Confidential Client">
+            {project.client || '-'}
+          </span>
+        );
       
       case 'type':
         return (
           <span className="type-badge">
-            {project.type}
+            {project.type || '-'}
           </span>
         );
       
@@ -239,7 +332,7 @@ const ArchivePage = ({ location, data }) => {
         return <span>{project.months}</span>;
       
       case 'title':
-        return <span>{project.title}</span>;
+        return <span>{project.title || '-'}</span>;
       
       case 'role':
         return <span>{project.Role}</span>;
@@ -271,10 +364,23 @@ const ArchivePage = ({ location, data }) => {
     <Layout location={location}>
       <Helmet title="ERP Projects I worked on" />
 
-      <main>
+      <main ref={containerRef}>
         <header ref={revealTitle}>
           <h1 className="big-heading">ERP Projects I worked on</h1>
-          <p className="subtitle">A big list of things I've worked on (Due to confidentiality concerns, names of clients cannot be disclosed.)</p>
+          <p className="subtitle">
+            A big list of things I've worked on (Due to confidentiality concerns, names of clients cannot be disclosed.)
+            <br />
+            <small style={{ 
+              color: 'var(--green)', 
+              fontFamily: 'var(--font-mono)',
+              display: 'block',
+              marginTop: '10px',
+              fontSize: '12px',
+              opacity: 0.8
+            }}>
+              Showing {projects.length} projects
+            </small>
+          </p>
         </header>
 
         <StyledTableContainer ref={revealTable}>
