@@ -14,7 +14,7 @@ const COLUMN_CONFIG = [
   { key: 'sno', label: 'S.No', width: '60px', mobile: true },
   { key: 'type', label: 'Type', mobile: true },
   { key: 'project', label: 'Client', mobile: true },
-  //{ key: 'client', label: 'Client', mobile: false },
+  { key: 'client', label: 'Client', mobile: false },
   
   //{ key: 'industry', label: 'Industry', mobile: false },
   //{ key: 'modules', label: 'Modules', mobile: false },
