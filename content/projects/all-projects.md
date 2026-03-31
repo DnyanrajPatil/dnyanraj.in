@@ -402,7 +402,7 @@ projects:
     PlatformSkills: ["Customizations", "dashboards", "BAQs", "BPM", "SSRS", "C#", "LINQ", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     title: ""
     description: ""
-    showInProjects: false
+    showInProjects: true
 
   - project: Build advanced signal amplification and communication systems that ensure strong, reliable wireless communication in critical environments.
     type: "Epicor"
@@ -415,7 +415,7 @@ projects:
     PlatformSkills: ["Kinetic UI customizations", "BAQs", "dashboards", "SSRS & Crystal Reports"]
     title: ""
     description: ""
-    showInProjects: false
+    showInProjects: true
 
   - project: Burke Playground Equipment specializes in advanced, customizable playground and fitness-based play systems that encourage inclusive physical activity and support overall child development.
     type: "Epicor"
@@ -428,7 +428,7 @@ projects:
     PlatformSkills: ["Kinetic UI customizations", "BAQs", "dashboards", "SSRS & Crystal Reports"]
     title: ""
     description: ""
-    showInProjects: false
+    showInProjects: true
 
   - project: Manufacturer of embedded computing solutions, specializing in high-performance boards, systems, and software for industrial and defense applications
     type: "Epicor"
@@ -441,7 +441,7 @@ projects:
     PlatformSkills: ["Customizations", "dashboards", "BAQs", "BPM", "SSRS", "C#", "LINQ", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     title: ""
     description: ""
-    showInProjects: false
+    showInProjects: true
 
   - project: Leading Bahrain-based construction and civil engineering company, specializing in residential, commercial, and infrastructure projects across the MENA region.
     type: "Epicor"
@@ -454,6 +454,6 @@ projects:
     PlatformSkills: ["Implemention", "Kinetic", "Customizations", "dashboards", "BAQs", "BPM", "SSRS", "C#", "LINQ", "Service Connect", "SQL Scripting & Performance Tuning", "IIS & App Server Management", "Task Agent Administration"]
     title: ""
     description: ""
-    showInProjects: false
+    showInProjects: true
 
 ---
