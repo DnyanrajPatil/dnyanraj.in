@@ -8,15 +8,15 @@ import sr from '@utils/sr';
 import { Layout } from '@components';
 
 // ==========================================
-// COLUMN CONFIGURATION - Client column added
+// COLUMN CONFIGURATION - Client column visible but blurred
 // ==========================================
 const COLUMN_CONFIG = [
   { key: 'sno', label: 'S.No', width: '60px', mobile: true },
   { key: 'type', label: 'Type', mobile: true },
-  { key: 'client', label: 'Client', mobile: true }, // Now visible with blue styling
-  // { key: 'project', label: 'Project', mobile: true },
+  { key: 'client', label: 'Client', mobile: true }, // Visible but blurred
+  { key: 'project', label: 'Client Profile', mobile: true },
   { key: 'industry', label: 'Industry', mobile: false },
-  //{ key: 'modules', label: 'Modules', mobile: false },
+  { key: 'modules', label: 'Modules', mobile: false },
   //{ key: 'months', label: 'Months', width: '80px', mobile: true },
   //{ key: 'title', label: 'Title', mobile: true },
   { key: 'role', label: 'Role', mobile: true },
@@ -125,28 +125,63 @@ const StyledTableContainer = styled.div`
         padding-right: 20px;
       }
 
-      /* Blue styling for Client column */
+      /* Blurred Client column - Confidential */
       &.client {
-        .client-name {
-          color: #64b5f6; /* Light blue color */
-          font-weight: 600;
-          background: linear-gradient(135deg, rgba(100, 181, 246, 0.1) 0%, rgba(66, 133, 244, 0.05) 100%);
-          padding: 6px 12px;
-          border-radius: 6px;
-          border: 1px solid rgba(100, 181, 246, 0.3);
-          display: inline-block;
+        .client-blur {
           font-family: var(--font-mono);
           font-size: var(--fz-sm);
-          box-shadow: 0 2px 8px rgba(100, 181, 246, 0.1);
-          transition: all 0.3s ease;
+          color: var(--light-slate);
+          background-color: rgba(136, 146, 176, 0.1);
+          padding: 6px 12px;
+          border-radius: 4px;
+          border: 1px solid rgba(136, 146, 176, 0.3);
+          display: inline-block;
+          min-width: 120px;
+          text-align: center;
           
-          &:hover {
-            background: linear-gradient(135deg, rgba(100, 181, 246, 0.2) 0%, rgba(66, 133, 244, 0.1) 100%);
-            border-color: rgba(100, 181, 246, 0.5);
-            box-shadow: 0 4px 12px rgba(100, 181, 246, 0.2);
-            transform: translateY(-1px);
+          /* Blur effect - makes text unreadable */
+          filter: blur(4px);
+          -webkit-filter: blur(4px);
+          -moz-filter: blur(4px);
+          -ms-filter: blur(4px);
+          
+          /* Prevent text selection */
+          user-select: none;
+          pointer-events: none;
+          
+          /* Smooth transition if you want to unblur on hover (optional) */
+          transition: filter 0.3s ease;
+          
+          /* Gradient overlay for extra obscurity */
+          position: relative;
+          overflow: hidden;
+          
+          &::after {
+            content: 'Confidential';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            color: var(--light-slate);
+            opacity: 0.7;
+            filter: blur(0px);
+            letter-spacing: 1px;
+            text-transform: uppercase;
           }
         }
+        
+        /* Optional: Remove blur on hover for authorized viewing */
+        /*
+        &:hover .client-blur {
+          filter: blur(0px);
+          -webkit-filter: blur(0px);
+          
+          &::after {
+            display: none;
+          }
+        }
+        */
       }
 
       &.type {
@@ -275,12 +310,22 @@ const ArchivePage = ({ location, data }) => {
         }
       };
 
+      // Prevent print screen (limited effectiveness)
+      const handlePrintScreen = (e) => {
+        if (e.key === 'PrintScreen') {
+          alert('Screenshots are not allowed for confidentiality reasons.');
+          e.preventDefault();
+          return false;
+        }
+      };
+
       // Add event listeners
       container.addEventListener('contextmenu', handleContextMenu);
       container.addEventListener('copy', handleCopy);
       container.addEventListener('cut', handleCut);
       container.addEventListener('dragstart', handleDragStart);
       document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('keyup', handlePrintScreen);
 
       // Cleanup
       return () => {
@@ -289,6 +334,7 @@ const ArchivePage = ({ location, data }) => {
         container.removeEventListener('cut', handleCut);
         container.removeEventListener('dragstart', handleDragStart);
         document.removeEventListener('keydown', handleKeyDown);
+        document.removeEventListener('keyup', handlePrintScreen);
       };
     }
   }, []);
@@ -303,8 +349,8 @@ const ArchivePage = ({ location, data }) => {
       
       case 'client':
         return (
-          <span className="client-name" title="Confidential Client">
-            {project.client || '-'}
+          <span className="client-blur" title="Client name hidden for confidentiality">
+            {project.client || 'Confidential'}
           </span>
         );
       
@@ -368,7 +414,7 @@ const ArchivePage = ({ location, data }) => {
         <header ref={revealTitle}>
           <h1 className="big-heading">ERP Projects I worked on</h1>
           <p className="subtitle">
-            A big list of things I've worked on (Due to confidentiality concerns, names of clients cannot be disclosed.)
+            A big list of things I've worked on (Due to confidentiality concerns, client names are hidden.)
             <br />
             <small style={{ 
               color: 'var(--green)', 
